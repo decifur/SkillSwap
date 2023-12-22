@@ -1,5 +1,1 @@
 # SkillSwap
-
-
-# Contributors
- -kenil
