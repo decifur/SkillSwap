@@ -1,5 +1,6 @@
 # SkillSwap
 
 
-# Contributors
- -kenil
+## Contributors
+ * Decifur
+ * 
