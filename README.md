@@ -1,8 +1,20 @@
-# React + Vite
+# SKILLSWAP
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The **SKILLSWAP** addresses critical challenges in the development field:
 
-Currently, two official plugins are available:
+- **Difficulty in forming a network:** Connects individuals with common interests and valuable expertise.
+- **Lack of opportunities:** Facilitates skill enhancement, collaboration, and knowledge exchange.
+- **Time-Consuming Matching:** Streamlines the process of finding collaborators, avoiding labor-intensive and uncertain methods.
+- **Limited Growth:** Helps users efficiently find partners matching their project goals, reducing wasted time and missed opportunities.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## SkillSwap Offers
+
+- **Educational Significance:** Bridges the educational gap in the tech sector by facilitating the process of finding collaborative partners for continuous learning.
+- **Skill Enhancement:** Encourages students to apply their knowledge through projects and find solutions to real-world problems.
+- **Encourage Teamwork:** Fosters teamwork by providing opportunities for students to collaborate with unknown individuals on successful projects.
+
+## Contributors
+
+- [Jitesh](https://github.com/decifur)
+- [Samay](https://github.com/MagnonCode)
+- [Kenil](https://github.com/kenilGamer)
