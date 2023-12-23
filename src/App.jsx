@@ -1,15 +1,12 @@
-import { Button, ListItem, UnorderedList } from "@chakra-ui/react"
-
 const App = () => {
   return (
     <div className='p-5'>
       <strong className='text-2xl block'>Technologies</strong><br />
-      <UnorderedList>
-        <ListItem>Tailwind CSS</ListItem>
-        <ListItem>Chakra-UI</ListItem>
-        <ListItem>React-Router-Dom</ListItem>
-        <ListItem>Redux-toolkit</ListItem>
-      </UnorderedList>
+      <ul className='list-disc pl-5'>
+        <li>Tailwind CSS</li>
+        <li>Chakra-UI</li>
+        <li>Redux-Toolkit</li>
+      </ul>
     </div>
   )
 }
