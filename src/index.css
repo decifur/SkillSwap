@@ -5,4 +5,7 @@
 .dark {
     @apply bg-slate-900 text-white;
 }
-  
+
+.link-active {
+    @apply bg-blue-600 text-white rounded-lg
+}
