@@ -9,3 +9,7 @@
 .link-active {
     @apply bg-blue-600 text-white rounded-lg
 }
+
+.accent-bg {
+    @apply bg-[#EBF2FF]
+}
