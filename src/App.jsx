@@ -13,7 +13,7 @@ const App = () => {
   useEffect(() => {
     const theme = getUserTheme();
     dispatch(setTheme(theme))
-  }, []);
+  });
 
   const handleThemeToggle = () => {
     dispatch(toggleTheme())
