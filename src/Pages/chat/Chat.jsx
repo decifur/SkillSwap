@@ -46,15 +46,6 @@ const Chat = () => {
                             <RecentChats data={{ name: 'Aarsan Adiya', message: `What's up` }} />
                             <RecentChats data={{ name: 'Adittya Sharma', message: `Hello` }} />
                             <RecentChats data={{ name: 'Munafir Rahman', message: `Hey, can we talk` }} />
-                            <RecentChats data={{ name: 'Munafir Rahman', message: `Hey, can we talk` }} />
-                            <RecentChats data={{ name: 'Munafir Rahman', message: `Hey, can we talk` }} />
-                            <RecentChats data={{ name: 'Munafir Rahman', message: `Hey, can we talk` }} />
-                            <RecentChats data={{ name: 'Munafir Rahman', message: `Hey, can we talk` }} />
-                            <RecentChats data={{ name: 'Munafir Rahman', message: `Hey, can we talk` }} />
-                            <RecentChats data={{ name: 'Munafir Rahman', message: `Hey, can we talk` }} />
-                            <RecentChats data={{ name: 'Munafir Rahman', message: `Hey, can we talk` }} />
-                            <RecentChats data={{ name: 'Munafir Rahman', message: `Hey, can we talk` }} />
-                            <RecentChats data={{ name: 'Munafir Rahman', message: `Hey, can we talk` }} />
                         </div>
                         <div className="w-full shrink-0 flex flex-col gap-3">
                             <RecentChats data={{ name: 'Alia Bhat', message: `I want to have a child` }} />
