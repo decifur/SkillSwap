@@ -11,19 +11,19 @@ const Navbar = () => {
         <div className="accent-bg h-screen w-14 p-2 shadow-[0px_1px_4px_#00000070] flex flex-col items-center justify-between">
             <img src="logo.jpg" alt="SkillSwap" />
             <div className="flex flex-col gap-4 items-center">
-                <NavLink to="/" className={({ isActive }) => (isActive ? 'link-active' : '')}>
+                <NavLink to="/" className={({ isActive }) => (isActive ? 'active-link' : '')}>
                     <GoHome className="m-[6px]" size="25px" />
                 </NavLink>
-                <NavLink to="/matchmaking" className={({ isActive }) => (isActive ? 'link-active' : '')}>
+                <NavLink to="/matchmaking" className={({ isActive }) => (isActive ? 'active-link' : '')}>
                     <LiaHandshake className="m-[6px]" size="25px" />
                 </NavLink>
-                <NavLink to="/chat" className={({ isActive }) => (isActive ? 'link-active' : '')}>
+                <NavLink to="/chat" className={({ isActive }) => (isActive ? 'active-link' : '')}>
                     <IoChatbubbleEllipsesOutline className="m-[6px]" size="25px" />
                 </NavLink>
-                <NavLink to="/profile" className={({ isActive }) => (isActive ? 'link-active' : '')}>
+                <NavLink to="/profile" className={({ isActive }) => (isActive ? 'active-link' : '')}>
                     <FaRegUser className="m-[6px]" size="23px" />
                 </NavLink>
-                <NavLink to="/settings" className={({ isActive }) => (isActive ? 'link-active' : '')}>
+                <NavLink to="/settings" className={({ isActive }) => (isActive ? 'active-link' : '')}>
                     <RiSettingsLine className="m-[6px]" size="25px" />
                 </NavLink>
             </div>
