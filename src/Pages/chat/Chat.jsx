@@ -1,7 +1,7 @@
 import { Button, Input, InputGroup, InputLeftElement, InputRightElement, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { MdSearch } from "react-icons/md";
 import { FaRegBell } from "react-icons/fa";
-import RecentChats from "./RecentChats";
+import RecentChat from "./RecentChat";
 import { BsThreeDotsVertical as Dots } from "react-icons/bs";
 import { MdDeleteOutline as DeleteIcon } from "react-icons/md";
 import { MdReportGmailerrorred as ReportIcon } from "react-icons/md";
@@ -10,6 +10,7 @@ import { ImAttachment } from "react-icons/im";
 import MyChat from "./MyChat";
 import HisChat from "./HisChat";
 import { useEffect, useRef, useState } from "react";
+import UnsavedChat from "./UnsavedChat";
 
 const Chat = () => {
     const chatBox = useRef();
@@ -34,7 +35,7 @@ const Chat = () => {
                     <h1 className="text-xl font-medium">{showUnsavedChats ? 'Unsaved Chats' : 'Messages'}</h1>
                     <div onClick={() => { setShowUnsavedChats(!showUnsavedChats) }} className="relative cursor-pointer" >
                         <div className="absolute aspect-square w-2 rounded-full bottom-[60%] right-[40%] bg-red-500 z-10"></div>
-                        <div className={`rounded-full p-1 ${showUnsavedChats && 'bg-gray-300'}`}>
+                        <div className={`rounded-full p-[6px] ${showUnsavedChats && 'bg-gray-200'}`}>
                             <FaRegBell size="20px" className="rotate-45" />
                         </div>
                     </div>
@@ -42,14 +43,14 @@ const Chat = () => {
                 <div className="overflow-hidden grow">
                     <div className={`flex transition duration-500 h-full ${showUnsavedChats && "translate-x-[-100%]"}`}>
                         <div className="flex flex-col gap-3 w-full h-full shrink-0 overflow-auto">
-                            <RecentChats data={{ name: 'Darshan Zalvadiya', message: 'How are you?' }} />
-                            <RecentChats data={{ name: 'Aarsan Adiya', message: `What's up` }} />
-                            <RecentChats data={{ name: 'Adittya Sharma', message: `Hello` }} />
-                            <RecentChats data={{ name: 'Munafir Rahman', message: `Hey, can we talk` }} />
+                            <RecentChat data={{ name: 'Darshan Zalvadiya', message: 'How are you?' }} />
+                            <RecentChat data={{ name: 'Aarsan Adiya', message: `What's up` }} />
+                            <RecentChat data={{ name: 'Adittya Sharma', message: `Hello` }} />
+                            <RecentChat data={{ name: 'Munafir Rahman', message: `Hey, can we talk` }} />
                         </div>
                         <div className="w-full shrink-0 flex flex-col gap-3">
-                            <RecentChats data={{ name: 'Alia Bhat', message: `I want to have a child` }} />
-                            <RecentChats data={{ name: 'Fuckiya Alu', message: 'Hey' }} />
+                            <UnsavedChat data={{ name: 'Alia Bhat', message: `Check me out` }} />
+                            <UnsavedChat data={{ name: 'Uckiya Alu', message: 'Hey' }} />
                         </div>
                     </div>
                 </div>
