@@ -1,18 +1,19 @@
-import { Button, Input, InputGroup, InputLeftElement, InputRightElement, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
-import { MdSearch } from 'react-icons/md';
-import { FaRegBell } from 'react-icons/fa';
-import RecentChats from './RecentChats';
-import { BsThreeDotsVertical as Dots } from 'react-icons/bs';
-import { MdDeleteOutline as DeleteIcon } from 'react-icons/md';
-import { MdReportGmailerrorred as ReportIcon } from 'react-icons/md';
-import { BsSend } from 'react-icons/bs';
-import { ImAttachment } from 'react-icons/im';
-import MyChat from './MyChat';
-import HisChat from './HisChat';
-import { useEffect, useRef } from 'react';
+import { Button, Input, InputGroup, InputLeftElement, InputRightElement, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
+import { MdSearch } from "react-icons/md";
+import { FaRegBell } from "react-icons/fa";
+import RecentChats from "./RecentChats";
+import { BsThreeDotsVertical as Dots } from "react-icons/bs";
+import { MdDeleteOutline as DeleteIcon } from "react-icons/md";
+import { MdReportGmailerrorred as ReportIcon } from "react-icons/md";
+import { BsSend } from "react-icons/bs";
+import { ImAttachment } from "react-icons/im";
+import MyChat from "./MyChat";
+import HisChat from "./HisChat";
+import { useEffect, useRef, useState } from "react";
 
 const Chat = () => {
     const chatBox = useRef();
+    const [showUnsavedChats, setShowUnsavedChats] = useState(false);
 
     useEffect(() => {
         chatBox.current.scrollTop = chatBox.current.scrollHeight;
@@ -20,24 +21,46 @@ const Chat = () => {
 
     return (
         <div className="grow flex overflow-hidden">
-            <div className="w-[330px] shadow-[0px_0px_3px_#00000040] p-3 relative">
-                <InputGroup>
-                    <InputLeftElement paddingLeft={3}>
-                        <MdSearch color="#808080" size="25px" />
-                    </InputLeftElement>
-                    <Input color="#707070" paddingBottom="2px" placeholder="Search..." borderRadius="100" />
-                </InputGroup>
-                <div className="flex items-center justify-between py-3 px-1">
-                    <h1 className="text-xl font-medium">Messages</h1>
-                    <div className="relative">
+            <div className="w-[330px] shadow-[0px_0px_3px_#00000040] py-3 relative select-none flex flex-col">
+                <div className="mx-3">
+                    <InputGroup>
+                        <InputLeftElement paddingLeft={3}>
+                            <MdSearch color="#808080" size="25px" />
+                        </InputLeftElement>
+                        <Input color="#707070" paddingBottom="2px" placeholder="Search..." borderRadius="100" />
+                    </InputGroup>
+                </div>
+                <div className="flex items-center justify-between py-3 px-4">
+                    <h1 className="text-xl font-medium">{showUnsavedChats ? 'Unsaved Chats' : 'Messages'}</h1>
+                    <div onClick={() => { setShowUnsavedChats(!showUnsavedChats) }} className="relative cursor-pointer" >
                         <div className="absolute aspect-square w-2 rounded-full bottom-[60%] right-[40%] bg-red-500 z-10"></div>
-                        <FaRegBell size="20px" className="rotate-45" />
+                        <div className={`rounded-full p-1 ${showUnsavedChats && 'bg-gray-300'}`}>
+                            <FaRegBell size="20px" className="rotate-45" />
+                        </div>
                     </div>
                 </div>
-                <div className="flex flex-col gap-3">
-                    <RecentChats />
-                    <RecentChats />
-                    <RecentChats />
+                <div className="overflow-hidden grow">
+                    <div className={`flex transition duration-500 h-full ${showUnsavedChats && "translate-x-[-100%]"}`}>
+                        <div className="flex flex-col gap-3 w-full h-full shrink-0 overflow-auto">
+                            <RecentChats data={{ name: 'Darshan Zalvadiya', message: 'How are you?' }} />
+                            <RecentChats data={{ name: 'Aarsan Adiya', message: `What's up` }} />
+                            <RecentChats data={{ name: 'Adittya Sharma', message: `Hello` }} />
+                            <RecentChats data={{ name: 'Munafir Rahman', message: `Hey, can we talk` }} />
+                            <RecentChats data={{ name: 'Munafir Rahman', message: `Hey, can we talk` }} />
+                            <RecentChats data={{ name: 'Munafir Rahman', message: `Hey, can we talk` }} />
+                            <RecentChats data={{ name: 'Munafir Rahman', message: `Hey, can we talk` }} />
+                            <RecentChats data={{ name: 'Munafir Rahman', message: `Hey, can we talk` }} />
+                            <RecentChats data={{ name: 'Munafir Rahman', message: `Hey, can we talk` }} />
+                            <RecentChats data={{ name: 'Munafir Rahman', message: `Hey, can we talk` }} />
+                            <RecentChats data={{ name: 'Munafir Rahman', message: `Hey, can we talk` }} />
+                            <RecentChats data={{ name: 'Munafir Rahman', message: `Hey, can we talk` }} />
+                            <RecentChats data={{ name: 'Munafir Rahman', message: `Hey, can we talk` }} />
+                        </div>
+                        <div className="w-full shrink-0 flex flex-col gap-3">
+                            <RecentChats data={{ name: 'Alia Bhat', message: `I want to have a child` }} />
+                            <RecentChats data={{ name: 'Fuckiya Alu', message: 'Hey' }} />
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className="grow accent-bg flex flex-col overflow-hidden">
