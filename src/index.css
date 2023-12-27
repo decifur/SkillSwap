@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.dark {
+    @apply bg-slate-900 text-white;
+}
+
+.active-link {
+    @apply bg-blue-600 text-white rounded-lg;
+}
+
+.accent-bg {
+    @apply bg-[#EBF2FF];
+}
