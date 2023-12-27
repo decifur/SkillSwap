@@ -1,9 +1,10 @@
-
+import { useSelector } from 'react-redux';
 const Matchmaking = () => {
+  const userInfo = useSelector((state) => state.user.info);
   return (
     <>
-      <div className="w-full h-full flex ">
-        <div className="w-[70%] h-[90%] bg-blue-50 flex m-9 rounded-2xl flex-col gap-5 items-center justify-center">
+      <div className={`w-full h-full flex ${userInfo.theme} `}>
+        <div className={`w-[70%] h-[90%] bg-blue-50  flex m-9 rounded-2xl flex-col gap-5 items-center justify-center ${userInfo.theme}2`}>
         <div className="w-[600px] h-[200px] flex items-center  justify-between ">
           <div className="bg-red-400 w-[120px] h-[120px] rounded-full"><img src="/assets/boy1.png" alt="" /></div>
           <div className=" w-[120px] h-[120px] items-center justify-center">
@@ -21,8 +22,8 @@ const Matchmaking = () => {
           </div>
         </div>
         <div className="flex flex-col items-center justify-center my-10 w-52"> 
-          <div className="bg-red-200 w-full h-10 text-center  my-2 flex items-center justify-center  rounded-xl ">Send Message✨</div>
-          <div className="bg-red-200 w-full h-10 text-center  my-2 flex items-center justify-center  rounded-xl ">Request Rematch</div>
+          <div className="bg-red-400 w-full h-10 text-center  my-2 flex items-center justify-center  rounded-xl ">Send Message✨</div>
+          <div className="bg-red-400 w-full h-10 text-center  my-2 flex items-center justify-center  rounded-xl ">Request Rematch</div>
         </div>
         </div>
         <div className="w-[30%] h-full bg-gray-200"></div>

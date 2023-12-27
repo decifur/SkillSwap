@@ -10,17 +10,17 @@ import { ImAttachment } from "react-icons/im";
 import MyChat from "./MyChat";
 import HisChat from "./HisChat";
 import { useEffect, useRef, useState } from "react";
-
+import { useSelector } from 'react-redux';
 const Chat = () => {
     const chatBox = useRef();
     const [showUnsavedChats, setShowUnsavedChats] = useState(false);
-
+    const userInfo = useSelector((state) => state.user.info);
     useEffect(() => {
         chatBox.current.scrollTop = chatBox.current.scrollHeight;
     }, []);
 
     return (
-        <div className="grow flex overflow-hidden">
+        <div className={`grow flex overflow-hidden ${userInfo.theme}`}>
             <div className="w-[330px] shadow-[0px_0px_3px_#00000040] py-3 relative select-none flex flex-col">
                 <div className="mx-3">
                     <InputGroup>

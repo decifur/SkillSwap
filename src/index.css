@@ -16,6 +16,9 @@ html , body{
     height: 100%;
     width: 100%;
 }
+.sd{
+    box-shadow: 0 0  15px 0px #5feeee;
+}
 .box{
     background: #EBF2FF;
 }
@@ -25,7 +28,12 @@ html , body{
 .dark {
     @apply bg-slate-900 text-white;
 }
-
+.dark2{
+    @apply bg-slate-700 text-white;
+}
+.dark3{
+    @apply bg-slate-900 text-white border-b-white border-l-white;
+}
 .active-link {
     @apply bg-blue-600 text-white rounded-lg;
 }

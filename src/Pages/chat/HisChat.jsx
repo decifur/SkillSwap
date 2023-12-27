@@ -1,3 +1,4 @@
+// eslint-disable-next-line react/prop-types
 const HisChat = ({ message }) => {
     return (
         <div className="flex my-2 gap-3">

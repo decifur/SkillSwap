@@ -17,7 +17,7 @@ const Home = () => {
     };
 
     return (
-        <div className="p-5">
+        <div className={`${userInfo.theme} p-5`}>
             <strong className="text-2xl block">Technologies</strong>
             <br />
             <ul className="list-disc pl-5">

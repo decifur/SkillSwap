@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 const MyChat = ({ message }) => {
     return (
         <div className="flex my-2">

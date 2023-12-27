@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
 import { BsThreeDotsVertical as Dots } from 'react-icons/bs';
 import { MdDeleteOutline as DeleteIcon } from "react-icons/md";
