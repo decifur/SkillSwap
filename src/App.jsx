@@ -5,7 +5,7 @@ const App = () => {
       <ul className='list-disc pl-5'>
         <li>Tailwind CSS</li>
         <li>Chakra-UI</li>
-        <li>Redux-Toolkit---->0k</li>
+        <li>Redux-Toolkit----0k</li>
       </ul>
     </div>
   )
