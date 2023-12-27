@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: op;
+    src: url(/public/font/GoldleafBoldPersonalUseBold-eZ4dO.ttf);
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+}
+html , body{
+    height: 100%;
+    width: 100%;
+}
+.box{
+    background: #EBF2FF;
+}
+.title{
+    font-family: op;
+}
 .dark {
     @apply bg-slate-900 text-white;
 }
