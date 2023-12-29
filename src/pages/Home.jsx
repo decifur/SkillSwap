@@ -8,7 +8,7 @@ const home = () => {
         <div className="flex flex-col h-[95vh] w-[63vw] bg-inherit rounded-2xl mt-[2rem] ml-12 shadow-[0px_1px_4px_#00000070]">
             <div className="flex justify-between">
                 <h1 className="text-2xl font-semibold text-black/60 m-5 pl-5">Active Requirements</h1>
-                <button className="btn h-7 w-[6rem] text-sm text-white mr-[6.2rem] mt-5 rounded-2xl">New Post</button>
+                <button className="btn h-7 min-w-[6rem] text-sm text-white mr-[6.2rem] mt-5 rounded-2xl">New Post</button>
             </div>
             <div className=" overflow-y-auto overflow-x-hidden mb-3">
                 {Cards.map( (item) => (
