@@ -24,12 +24,12 @@ const home = () => {
             </div>
         </div>
         {/* 2nd part */}
-        <div className="flex flex-col justify-start h-[58vh] w-[23vw] bg-[#ebf2ff] shadow-[0px_1px_4px_#00000070] mt-[2rem] rounded-2xl">
-            <h1 className="text-black/60 text-xl font-semibold mx-4 my-5">Post Requirement</h1>
+        <div className="flex flex-col justify-start h-96 w-[23vw] bg-[#ebf2ff] shadow-[0px_1px_4px_#00000070] mt-[2rem] rounded-2xl">
+            <h1 className="text-black/60 text-xl font-semibold mx-4 my-4">Post Requirement</h1>
             <input className=" p-[0.3rem] px-4 rounded-2xl w-[21vw] mx-3 -mt-2" placeholder="Search Skills..."/>
-            <textarea className=" p-2 rounded-2xl w-[21vw] h-[15vh] mx-3 mt-4" placeholder="Added skills"/>
-            <textarea className=" p-2 rounded-2xl w-[21vw] h-[15vh] mx-3 mt-4" placeholder="Desciption"/>
-            <button className="btn h-7 w-[6rem] text-sm text-white ml-[12.6rem] mr-20 mt-5 rounded-2xl">Post</button>
+            <textarea className=" p-2 rounded-2xl w-[21vw] h-[25%] mx-3 mt-4" placeholder="Added skills"/>
+            <textarea className=" p-2 rounded-2xl w-[21vw] h-[30%] mx-3 mt-4" placeholder="Desciption"/>
+            <button className="btn h-7 w-[6rem] text-sm text-white ml-auto mr-5 mt-4 rounded-2xl">Post</button>
         </div>
     </div>
   )
