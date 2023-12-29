@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 const Navbar = () => {
     return (
         <div className="accent-bg h-screen w-14 p-2 shadow-[0px_1px_4px_#00000070] flex flex-col items-center justify-between">
-            <img src="logo.jpg" alt="SkillSwap" />
+            <img src="logo.png" alt="SkillSwap" />
             <div className="flex flex-col gap-4 items-center">
                 <NavLink to="/" className={({ isActive }) => (isActive ? 'active-link' : '')}>
                     <GoHome className="m-[6px]" size="25px" />
