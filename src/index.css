@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+.dark {
+    @apply bg-slate-900 text-white;
+}
+
+.active-link {
+    @apply bg-blue-600 text-white rounded-lg;
+}
+
+.accent-bg {
+    @apply bg-[#EBF2FF];
+}
 .btn {
     background: rgb(107,97,171);
     background: linear-gradient(90deg, rgba(107,97,171,1) 0%, rgba(81,62,197,1) 56%);
@@ -30,3 +41,4 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #807f7f;
 }
+
