@@ -1,18 +1,14 @@
-import { Outlet, Route, Routes } from 'react-router-dom';
-import Home from './Pages/Home';
-import Chat from './Pages/chat/Chat';
-import Navbar from './components/Navbar';
-import Matchmaking from './Pages/Matchmaking';
-import Profile from './Pages/Profile';
-import Settings from './Pages/Settings';
+import { Outlet, Route, Routes,  } from "react-router-dom"
+import { Navbar } from "./components"
+import { Home, Matchmaking, Profile, Setting, Chat } from "./pages"
 
 function Layout() {
-    return (
-        <div className="flex h-screen">
-            <Navbar />
-            <Outlet />
-        </div>
-    );
+  return (
+      <div className="flex h-screen">
+          <Navbar />
+          <Outlet />
+      </div>
+  );
 }
 
 const App = () => {
