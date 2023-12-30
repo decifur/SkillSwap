@@ -1,6 +1,10 @@
-import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "../slice/userSlice";
+import {   configureStore } from "@reduxjs/toolkit";
+import user from "../slice/userSlice";
+import matches from "../slice/matchSlice";
+
 
 export const store = configureStore({
-    reducer:userReducer
-})
+    reducer:{
+        user:user,
+        matches:matches,
+    }})

@@ -5,6 +5,12 @@ import Navbar from './components/Navbar';
 import Matchmaking from './Pages/Matchmaking';
 import Profile from './Pages/Profile';
 import Settings from './Pages/Settings';
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setTheme, toggleTheme } from './slice/userSlice';
+import { useColorMode } from '@chakra-ui/react';
+
+
 
 function Layout() {
     return (
@@ -16,6 +22,18 @@ function Layout() {
 }
 
 const App = () => {
+  const userInfo = useSelector((state => state.user))
+  const dispatch = useDispatch();
+  const { colorMode, toggleColorMode } = useColorMode()
+
+  useEffect(() => {
+    dispatch(setTheme(colorMode))
+  });
+
+  const handleThemeToggle = () => {
+    dispatch(toggleTheme())
+    toggleColorMode()
+  }
     return (
         <Routes>
             <Route path="/" element={<Layout />}>
