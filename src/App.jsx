@@ -1,26 +1,27 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserTheme } from './utilies';
 import { setTheme, toggleTheme } from './slice/userSlice';
+import { useColorMode } from '@chakra-ui/react';
 
 
 
 
 const App = () => {
-  const userInfo = useSelector((state => state.user.info))
+  const userInfo = useSelector((state => state.user))
   const dispatch = useDispatch();
+  const { colorMode, toggleColorMode } = useColorMode()
 
   useEffect(() => {
-    const theme = getUserTheme();
-    dispatch(setTheme(theme))
+    dispatch(setTheme(colorMode))
   });
 
   const handleThemeToggle = () => {
     dispatch(toggleTheme())
+    toggleColorMode()
   }
 
   return (
-    <div className='p-5'>
+    <div className='h-full w-full'>
       <strong className='text-2xl block'>Technologies</strong><br />
       <ul className='list-disc pl-5'>
         <li>Tailwind CSS</li>
