@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 
 const ChatPanel = ({ chat }) => {
 
-    const user = useSelector(e => e.user.info)
+    const user = useSelector(e => e.user)
 
     const chatBox = useRef();
     useEffect(() => {
@@ -63,3 +63,5 @@ const ChatPanel = ({ chat }) => {
 }
 
 export default ChatPanel
+
+

@@ -5,7 +5,7 @@ import { MdReportGmailerrorred as ReportIcon } from "react-icons/md";
 import { useSelector } from 'react-redux';
 
 const RecentChat = ({ data, changeOpenedChat }) => {
-    const user = useSelector(e => e.user.info)
+    const user = useSelector(e => e.user)
 
     return (
         <div onClick={() => changeOpenedChat(data.id)} className="accent-bg shadow-[0px_0px_2px_#00000060] cursor-pointer h-16 rounded-lg p-2 flex gap-2 items-center mx-3">
