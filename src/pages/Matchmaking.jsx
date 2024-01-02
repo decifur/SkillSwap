@@ -4,7 +4,7 @@ import arrow from '../assets/arrow.svg'
 import { BsSend } from "react-icons/bs";
 import { useDispatch, useSelector } from 'react-redux';
 import JSConfetti from 'js-confetti'
-
+import { deleteActiveSkill } from '../slice/matchSlice';
 
 import {
   useDisclosure,
@@ -34,7 +34,6 @@ import {
   useToast
 
 } from '@chakra-ui/react';
-import { deleteActiveSkill } from '../slice/matchSlice';
 
 function Matchmaking() {
   const primaryBg = useColorModeValue('#EBF2FF', '#404258');
@@ -49,8 +48,8 @@ function Matchmaking() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const jsConfetti = new JSConfetti()
   const toast = useToast();
-
-
+  
+  
 
   useEffect(() => {
     setTimeout(() => {
@@ -66,16 +65,21 @@ function Matchmaking() {
     const intervalID = setInterval(() => {
       setMatchedUser(pickRandom(dummyUsers))
     }, 200)
+
     setTimeout(() => {
+      const location = window.location
       clearInterval(intervalID)
       setMatching(false)
-      jsConfetti.addConfetti()
+      console.log(location)
+      if(location.pathname === '/matchmaking') {
+        jsConfetti.addConfetti()
+      }
       toast({
         position: 'top-right',
         title: 'Match Found!',
         description: "We've found a match for you.",
         status: 'success',
-        duration: 2000,
+        duration: 3000,
         isClosable: true,
       })
 
@@ -87,18 +91,18 @@ function Matchmaking() {
 
   return (
     <>
-      <Flex h="100vh" w="100%" py={['0', null, '6']} justify='center' align='center'>
-        <Flex w={['100%', '100%', '70%']} bg={primaryBg} h={['100%']} align='center' direction="column" borderRadius={['0', null, '20']} left={['10%']} py={['8', null, null]} >
-          <Text as='h1' fontSize={["3xl", null, "1.8rem"]} fontWeight={[null, null, 'semibold']} color="gray.500" m={['2', null, '12']}>
-            {!matchedUser ? 'Find' : 'Here'} is your buddy
+      <Flex h="100%" w="100%" py={['0', '2', '6']} justify='center' align='center'>
+        <Flex w={['100%', '100%', '70%']} bg={primaryBg} h={['100%','100%','96%']} align='center' direction="column" borderRadius={['0', null, '20']}  pos={[null,null,'relative']} >
+          <Text as='h1' fontSize={["2xl", null, "1.8rem"]} fontWeight={[null, null, 'semibold']} color="gray.500" m={['2', null, null]} pos={[null,null,'absolute']} top='2%'>
+            {!matchedUser ? 'Find' : 'Here is'} your buddy
           </Text>
-          <Flex pt={['4rem', null, '2rem']}>
+          <Flex pt={['4rem', null, '2rem']} pos={[null,null,'absolute']} top='25%'>
             <Center gap={['4', '8', '12']}>
               <Box >
                 <Image src={user.imageLink} alt='user image' borderRadius="full" h={imgSize} w={imgSize} objectFit='cover' />
                 <Text textAlign="center">{user.firstName}</Text>
               </Box>
-              <Image src={arrow} alt='user image' borderRadius="full" h={['6rem', '7rem', '40']} w={['6rem', '7rem', '40']} objectFit='cover' _dark={{ filter: 'invert(1)' }} />
+              <Image src={arrow} alt='user image' borderRadius="full" h={['6rem', '7rem', '40']} w={['6rem', '7rem', '40']}  _dark={{ filter: 'invert(1)' }} objectFit='cover'/>
               <Box >
                 {matchedUser && <Image src={matchedUser.imageLink} key={matchedUser.imageLink} alt='user image' borderRadius="full" h={imgSize} w={imgSize} objectFit='cover' />}
                 {loading && <SkeletonCircle borderRadius="full" h={imgSize} w={imgSize} objectFit='cover' />}
@@ -107,7 +111,7 @@ function Matchmaking() {
               </Box>
             </Center>
           </Flex>
-          <Flex m={['16', null, '4']} w='100%' align='center' direction='column'>
+          <Flex m={['16', null, '0']} w='100%' align='center' direction='column' pos={[null,null,'absolute']} top='60%'>
             <Text fontSize={['lg']}>Matched Skills</Text>
             <Stack direction='row' spacing={['8px']} my={['2']} align='center' justify='center'>
               {!matching ?
@@ -129,7 +133,7 @@ function Matchmaking() {
                 )}
             </Stack>
           </Flex>
-          <Flex direction='column' justify='center' gap={['4']} my={['25']}>
+          <Flex direction='column' justify='center' gap={['4','4','2']} my={['25','25',null]} pos={[null,null,'absolute']} top='73%'>
             {matchedUser ? (<><Button border='2px solid black' px={['12']} borderRadius='lg' isLoading={matching}>Send Message <SendIcon size='16' ml={['1']} pos='relative' top={['2px']} /></Button>
               <Button bg={secondaryBg} color='white' px={['12']} borderRadius='lg' onClick={handleNewMatchRequest} _hover={[null, null, { bg: 'blue.300' }]} isLoading={matching}>Request Rematch</Button></>) : (
               <Button bg={secondaryBg} color='white' px={['12']} borderRadius='lg' onClick={onOpen} _hover={[null, null, { bg: 'blue.300' }]} >Request Match</Button>
