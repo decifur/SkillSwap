@@ -11,6 +11,6 @@ const config = {
 }
 
 
-const theme = extendTheme({config,breakpoints })
+const theme = extendTheme({config,breakpoints})
 
 export default theme

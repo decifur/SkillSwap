@@ -4,7 +4,7 @@ import arrow2 from '../assets/arrow2.svg'
 import { BsSend } from "react-icons/bs";
 import { useDispatch, useSelector } from 'react-redux';
 import JSConfetti from 'js-confetti'
-import { deleteActiveSkill } from '../slice/matchSlice';
+import { addActiveDesc, addActiveSkill, deleteActiveSkill } from '../slice/matchSlice';
 
 import {
   useDisclosure,
@@ -38,12 +38,13 @@ import {
 function Matchmaking() {
   const primaryBg = useColorModeValue('#EBF2FF', '#404258');
   const secondaryBg = useColorModeValue('blue.500', 'blue.700');
+  const modalBg = useColorModeValue('white', '#404258');
   const [skillInput , setSkillInput] = useState('')
   const [matchedUser, setMatchedUser] = useState(false)
   const [matching, setMatching] = useState(true)
   const [loading, setLoading] = useState(true)
   const user = useSelector((state => state.user))
-  const matches = useSelector((state => state.matches))
+  const {activeMatch,availableSkills} = useSelector((state => state.matches))
   const dispatch = useDispatch()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const jsConfetti = new JSConfetti()
@@ -70,7 +71,6 @@ function Matchmaking() {
       const location = window.location
       clearInterval(intervalID)
       setMatching(false)
-      console.log(location)
       if(location.pathname === '/matchmaking') {
         jsConfetti.addConfetti()
       }
@@ -88,6 +88,11 @@ function Matchmaking() {
 
   const SendIcon = chakra(BsSend)
   const imgSize = ['7rem', '8rem', '8.5rem']
+
+  const handleAddSkill = (skill)=>{
+    dispatch(addActiveSkill(skill))
+    setSkillInput('')
+  }
 
   return (
     <>
@@ -146,19 +151,29 @@ function Matchmaking() {
             <ModalHeader>Find Your Buddy</ModalHeader>
             <ModalCloseButton />
             <ModalBody pos='relative'>
-              <Input placeholder='Search Your Skill' value={skillInput} onChange={(e)=>{setSkillInput(e.target.value)}}/>
-              <Flex direction='column' pos='absolute' h={['50%']} w={['50%']} bg='white' zIndex='3' left={['7%']} borderBottomRadius={['md']} border='1px' borderColor='gray.200' shadow='md' hidden={skillInput.length < 1}>
-
+              <Input placeholder='Search Your Skill' value={skillInput} onChange={(e)=>{setSkillInput(e.target.value)}} />
+              <Flex direction='column' pos='absolute'  w={['30%']}  zIndex='3' left={['6%']} borderBottomRadius={['md']} border='1px' borderColor='gray.200' _dark={{borderColor:'gray.600'}} shadow='md' hidden={skillInput.length < 1} p="2" bg={modalBg}>
+              {availableSkills.filter(s=>s.startsWith(skillInput.toLocaleLowerCase())).map((skill)=>{
+                return (<Fragment  key={skill}>
+                  <Tag variant='solid' size='sm' bg='#c795fc'  my='1'  px='2' cursor='pointer' className='capitalize' shadow='md'  onClick={()=>{handleAddSkill(skill)}}>
+                  <TagLabel>
+                    <Text textAlign='center'>{skill}</Text>
+                    </TagLabel>
+                  </Tag>
+                  </Fragment>)
+              })
+            }
+            {availableSkills.filter(s=>s.startsWith(skillInput.toLocaleLowerCase())).length<1 && <Text fontSize='xs' opacity={0.5}>No results found.</Text>   }       
               </Flex>
-              <Flex py='4' hidden={matches.active.skills.length < 1}>
-             { matches.active.skills.map((skill) => {
+              <Flex py='4' hidden={activeMatch.skills.length < 1}>
+             { activeMatch.skills.map((skill) => {
                         return (<Fragment  key={skill}> <Tag variant='solid' size='sm' colorScheme='purple' mx='1'>
                           <TagLabel>{skill}</TagLabel>
                           <TagCloseButton onClick={()=>{dispatch(deleteActiveSkill(skill))}}/>
                         </Tag></Fragment>)
                       })}
               </Flex>
-              <Textarea placeholder='add description' my={['3','4','5']} />
+              <Textarea placeholder='add description' my={['3','4','5']} onChange={(e)=>{dispatch(addActiveDesc(e.target.value))}} value={activeMatch.desc}/>
             </ModalBody>
 
             <ModalFooter>
