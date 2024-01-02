@@ -1,6 +1,6 @@
 import { useEffect, useState , Fragment } from 'react'
 import { getDummyUsers, pickRandom } from "../utils";
-import arrow from '../assets/arrow.svg'
+import arrow2 from '../assets/arrow2.svg'
 import { BsSend } from "react-icons/bs";
 import { useDispatch, useSelector } from 'react-redux';
 import JSConfetti from 'js-confetti'
@@ -102,7 +102,7 @@ function Matchmaking() {
                 <Image src={user.imageLink} alt='user image' borderRadius="full" h={imgSize} w={imgSize} objectFit='cover' />
                 <Text textAlign="center">{user.firstName}</Text>
               </Box>
-              <Image src={arrow} alt='user image' borderRadius="full" h={['6rem', '7rem', '40']} w={['6rem', '7rem', '40']}  _dark={{ filter: 'invert(1)' }} objectFit='cover'/>
+              <Image src={arrow2} alt='user image' borderRadius="full" h={['6rem', '7rem', '8rem']} w={['6rem', '7rem', '8rem']}  _dark={{ filter: 'invert(1)' }} objectFit='cover'/>
               <Box >
                 {matchedUser && <Image src={matchedUser.imageLink} key={matchedUser.imageLink} alt='user image' borderRadius="full" h={imgSize} w={imgSize} objectFit='cover' />}
                 {loading && <SkeletonCircle borderRadius="full" h={imgSize} w={imgSize} objectFit='cover' />}
