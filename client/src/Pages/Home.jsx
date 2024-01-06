@@ -1,16 +1,18 @@
+/* eslint-disable no-unused-vars */
+import { Input, InputGroup, InputLeftElement, InputRightElement } from "@chakra-ui/react";
+import { MdSearch } from "react-icons/md";
 
 import {useSelector} from 'react-redux';
-
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Home = () => {
     const userInfo = useSelector((state) => state.user.info);
-    // const dispatch = useDispatch();
-
  
-
 
     return (
        <>
+       
         <div className={`${userInfo.theme} w-full h-full flex `}>
            <div className='h-full w-9/12  overflow-auto flex flex-col p-2'>
            <div className='flex w-[947px] h-10 items-center gap-[60%] p-2'>
@@ -21,7 +23,7 @@ const Home = () => {
            <div className='w-full flex justify-between '>
             <div className='flex h-24 items-center  gap-5'>
                 <img src="/public/assets/boy1.png" width={90} height={50} alt="" />
-               <div> <h1 className='text-4xl font-bold'>John Doe</h1>
+               <div> <h1 className='text-4xl font-bold'>John Doe </h1>
                 <p className='text-sm'>Fullstack Developer</p></div>
             </div>
             <button className='but h-10 w-20 text-white right-1'> chat</button>
@@ -87,6 +89,12 @@ const Home = () => {
             {/* <div><h1 className='text-xl font-bold'>Post Requirement</h1></div> */}
             <div className='w-full h-[60%]  flex flex-col  gap-5 px-3 py-7'>
             <h1 className='text-xl font-bold '>Post Requirement</h1>
+              <InputGroup>
+                          <InputLeftElement paddingLeft={3}>
+                              <MdSearch color="#808080" size="25px" />
+                          </InputLeftElement>
+                          <Input color="#707070" paddingBottom="2px" placeholder="Search..." borderRadius="100" />
+                      </InputGroup>
               <form className='flex flex-col gap-3' action="/post" method="post">
                 <input className='w-full' type="search" name="search" placeholder='search' id="" />
                 <input className='w-full' type="text" placeholder='Added Skills '/>

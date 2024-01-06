@@ -33,7 +33,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className="w-full h-44">
+        <div className="w-full min-h-44 py-3">
           <div className="flex items-center gap-2 mb-2">
             <h1 className="text-2xl font-bold">SKILLS </h1>
             <samp ><MdEdit/></samp>
