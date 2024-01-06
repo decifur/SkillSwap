@@ -5,7 +5,8 @@ import Navbar from './components/Navbar';
 import Matchmaking from './Pages/Matchmaking';
 import Profile from './Pages/Profile';
 import Settings from './Pages/Settings';
-import Login from './Pages/login';
+import Sinup from './Pages/sinup';
+import Login from './Pages/Login';
 
 function Layout() {
     return (
@@ -19,6 +20,7 @@ function Layout() {
 const App = () => {
     return (
         <Routes>
+            <Route path="/sinup" element={<Sinup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
