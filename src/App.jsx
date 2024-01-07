@@ -9,6 +9,8 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setTheme, toggleTheme } from './slice/userSlice';
 import { useColorMode } from '@chakra-ui/react';
+import Login from './Pages/login/Login';
+import Signup from './Pages/signup/Signup';
 
 
 
@@ -22,18 +24,18 @@ function Layout() {
 }
 
 const App = () => {
-  const userInfo = useSelector((state => state.user))
-  const dispatch = useDispatch();
-  const { colorMode, toggleColorMode } = useColorMode()
+    const userInfo = useSelector((state => state.user))
+    const dispatch = useDispatch();
+    const { colorMode, toggleColorMode } = useColorMode()
 
-  useEffect(() => {
-    dispatch(setTheme(colorMode))
-  });
+    useEffect(() => {
+        dispatch(setTheme(colorMode))
+    });
 
-  const handleThemeToggle = () => {
-    dispatch(toggleTheme())
-    toggleColorMode()
-  }
+    const handleThemeToggle = () => {
+        dispatch(toggleTheme())
+        toggleColorMode()
+    }
     return (
         <Routes>
             <Route path="/" element={<Layout />}>
@@ -43,6 +45,8 @@ const App = () => {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/settings" element={<Settings />} />
             </Route>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
         </Routes>
     );
 };
