@@ -96,8 +96,7 @@ function Matchmaking() {
 
   return (
     <>
-      <Flex h="100%" w="100%" py={['0', '2', '6']} justify='center' align='center'>
-        <Flex w={['100%', '100%', '70%']} bg={primaryBg} h={['100%','100%','96%']} align='center' direction="column" borderRadius={['0', null, '20']}  pos={[null,null,'relative']} >
+        <Flex w={['100%', '100%', '70%']} bg={primaryBg} h={['100%','100%','96%']} align='center' direction="column" borderRadius={['0', null, '20']}  pos={[null,null,'relative']} mx='auto' my={['0','0','3']}>
           <Text as='h1' fontSize={["2xl", null, "1.8rem"]} fontWeight={[null, null, 'semibold']} color="gray.500" m={['2', null, null]} pos={[null,null,'absolute']} top='2%'>
             {!matchedUser ? 'Find' : 'Here is'} your buddy
           </Text>
@@ -167,7 +166,7 @@ function Matchmaking() {
               </Flex>
               <Flex py='4' hidden={activeMatch.skills.length < 1}>
              { activeMatch.skills.map((skill) => {
-                        return (<Fragment  key={skill}> <Tag variant='solid' size='sm' colorScheme='purple' mx='1'>
+                        return (<Fragment  key={skill} px='1'> <Tag variant='solid' size='sm' colorScheme='purple' mx='1'>
                           <TagLabel>{skill}</TagLabel>
                           <TagCloseButton onClick={()=>{dispatch(deleteActiveSkill(skill))}}/>
                         </Tag></Fragment>)
@@ -184,7 +183,6 @@ function Matchmaking() {
             </ModalFooter>
           </ModalContent>
         </Modal>
-      </Flex>
     </>
   )
 }
