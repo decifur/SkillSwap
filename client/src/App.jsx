@@ -1,36 +1,14 @@
-import { Outlet, Route, Routes } from 'react-router-dom';
-import Home from './Pages/Home';
-import Chat from './Pages/chat/Chat';
-import Navbar from './components/Navbar';
-import Matchmaking from './Pages/Matchmaking';
-import Profile from './Pages/Profile';
-import Settings from './Pages/Settings';
-import Sinup from './Pages/sinup';
-import Login from './Pages/Login';
-
-function Layout() {
-    return (
-        <div className="flex h-screen">
-            <Navbar />
-            <Outlet />
-        </div>
-    );
+const App = () => {
+  return (
+    <div className='p-5'>
+      <strong className='text-2xl block'>Technologies</strong><br />
+      <ul className='list-disc pl-5'>
+        <li>Tailwind CSS</li>
+        <li>Chakra-UI</li>
+        <li>Redux-Toolkit</li>
+      </ul>
+    </div>
+  )
 }
 
-const App = () => {
-    return (
-        <Routes>
-            <Route path="/sinup" element={<Sinup />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/" element={<Layout />}>
-                <Route index element={<Home />} />
-                <Route path="/matchmaking" element={<Matchmaking />} />
-                <Route path="/chat" element={<Chat />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/settings" element={<Settings />} />
-            </Route>
-        </Routes>
-    );
-};
-
-export default App;
+export default App
