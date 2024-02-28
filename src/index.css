@@ -41,3 +41,12 @@
 .accent-bg {
     @apply bg-[#EBF2FF];
 }
+
+@layer base {
+    input::-ms-reveal,
+    input::-ms-clear {
+      display: none;
+    }
+
+    
+}
