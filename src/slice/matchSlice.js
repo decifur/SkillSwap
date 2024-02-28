@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    active:{
-        skills:['React','express','angular','node','Vue'],
+    activeMatch:{
+        skills:[],
         desc:''
-    }
+    },
+    availableSkills:['react','express','angular','node','vue','rust','javascript','python','c','c++','c#','dsa','django','flask','react-native','java','springboot','typescript','tailwind','html','css','flutter','kotlin','ruby',''],
   };
 
 export const matchSlice = createSlice({
@@ -12,15 +13,15 @@ export const matchSlice = createSlice({
   initialState,
   reducers: {
     addActiveSkill:(state,action)=>{
-        if(!state.active.skills.includes(action.payload)){
-            state.active.skills.push(action.payload)
+        if(!state.activeMatch.skills.includes(action.payload)){
+            state.activeMatch.skills.push(action.payload)
         }
     },
     deleteActiveSkill:(state,action)=>{
-        state.active.skills = state.active.skills.filter(skill=>skill !== action.payload)
+        state.activeMatch.skills = state.activeMatch.skills.filter(skill=>skill !== action.payload)
     },
     addActiveDesc:(state,action)=>{
-        state.active.desc = action.payload
+        state.activeMatch.desc = action.payload
     }
   },
 });

@@ -1,10 +1,10 @@
 import { useEffect, useState , Fragment } from 'react'
 import { getDummyUsers, pickRandom } from "../utils";
-import arrow from '../assets/arrow.svg'
+import arrow2 from '../assets/arrow2.svg'
 import { BsSend } from "react-icons/bs";
 import { useDispatch, useSelector } from 'react-redux';
 import JSConfetti from 'js-confetti'
-
+import { addActiveDesc, addActiveSkill, deleteActiveSkill } from '../slice/matchSlice';
 
 import {
   useDisclosure,
@@ -34,23 +34,23 @@ import {
   useToast
 
 } from '@chakra-ui/react';
-import { deleteActiveSkill } from '../slice/matchSlice';
 
 function Matchmaking() {
   const primaryBg = useColorModeValue('#EBF2FF', '#404258');
   const secondaryBg = useColorModeValue('blue.500', 'blue.700');
+  const modalBg = useColorModeValue('white', '#404258');
   const [skillInput , setSkillInput] = useState('')
   const [matchedUser, setMatchedUser] = useState(false)
   const [matching, setMatching] = useState(true)
   const [loading, setLoading] = useState(true)
   const user = useSelector((state => state.user))
-  const matches = useSelector((state => state.matches))
+  const {activeMatch,availableSkills} = useSelector((state => state.matches))
   const dispatch = useDispatch()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const jsConfetti = new JSConfetti()
   const toast = useToast();
-
-
+  
+  
 
   useEffect(() => {
     setTimeout(() => {
@@ -66,16 +66,20 @@ function Matchmaking() {
     const intervalID = setInterval(() => {
       setMatchedUser(pickRandom(dummyUsers))
     }, 200)
+
     setTimeout(() => {
+      const location = window.location
       clearInterval(intervalID)
       setMatching(false)
-      jsConfetti.addConfetti()
+      if(location.pathname === '/matchmaking') {
+        jsConfetti.addConfetti()
+      }
       toast({
         position: 'top-right',
         title: 'Match Found!',
         description: "We've found a match for you.",
         status: 'success',
-        duration: 2000,
+        duration: 3000,
         isClosable: true,
       })
 
@@ -85,20 +89,25 @@ function Matchmaking() {
   const SendIcon = chakra(BsSend)
   const imgSize = ['7rem', '8rem', '8.5rem']
 
+  const handleAddSkill = (skill)=>{
+    dispatch(addActiveSkill(skill))
+    setSkillInput('')
+  }
+
   return (
     <>
-      <Flex h="100vh" w="100%" py={['0', null, '6']} justify='center' align='center'>
-        <Flex w={['100%', '100%', '70%']} bg={primaryBg} h={['100%']} align='center' direction="column" borderRadius={['0', null, '20']} left={['10%']} py={['8', null, null]} >
-          <Text as='h1' fontSize={["3xl", null, "1.8rem"]} fontWeight={[null, null, 'semibold']} color="gray.500" m={['2', null, '12']}>
-            {!matchedUser ? 'Find' : 'Here'} is your buddy
+      <Flex h="100%" w="100%" py={['0', '2', '6']} justify='center' align='center'>
+        <Flex w={['100%', '100%', '70%']} bg={primaryBg} h={['100%','100%','96%']} align='center' direction="column" borderRadius={['0', null, '20']}  pos={[null,null,'relative']} >
+          <Text as='h1' fontSize={["2xl", null, "1.8rem"]} fontWeight={[null, null, 'semibold']} color="gray.500" m={['2', null, null]} pos={[null,null,'absolute']} top='2%'>
+            {!matchedUser ? 'Find' : 'Here is'} your buddy
           </Text>
-          <Flex pt={['4rem', null, '2rem']}>
+          <Flex pt={['4rem', null, '2rem']} pos={[null,null,'absolute']} top='25%'>
             <Center gap={['4', '8', '12']}>
               <Box >
                 <Image src={user.imageLink} alt='user image' borderRadius="full" h={imgSize} w={imgSize} objectFit='cover' />
                 <Text textAlign="center">{user.firstName}</Text>
               </Box>
-              <Image src={arrow} alt='user image' borderRadius="full" h={['6rem', '7rem', '40']} w={['6rem', '7rem', '40']} objectFit='cover' _dark={{ filter: 'invert(1)' }} />
+              <Image src={arrow2} alt='user image' borderRadius="full" h={['6rem', '7rem', '8rem']} w={['6rem', '7rem', '8rem']}  _dark={{ filter: 'invert(1)' }} objectFit='cover'/>
               <Box >
                 {matchedUser && <Image src={matchedUser.imageLink} key={matchedUser.imageLink} alt='user image' borderRadius="full" h={imgSize} w={imgSize} objectFit='cover' />}
                 {loading && <SkeletonCircle borderRadius="full" h={imgSize} w={imgSize} objectFit='cover' />}
@@ -107,7 +116,7 @@ function Matchmaking() {
               </Box>
             </Center>
           </Flex>
-          <Flex m={['16', null, '4']} w='100%' align='center' direction='column'>
+          <Flex m={['16', null, '0']} w='100%' align='center' direction='column' pos={[null,null,'absolute']} top='60%'>
             <Text fontSize={['lg']}>Matched Skills</Text>
             <Stack direction='row' spacing={['8px']} my={['2']} align='center' justify='center'>
               {!matching ?
@@ -129,7 +138,7 @@ function Matchmaking() {
                 )}
             </Stack>
           </Flex>
-          <Flex direction='column' justify='center' gap={['4']} my={['25']}>
+          <Flex direction='column' justify='center' gap={['4','4','2']} my={['25','25',null]} pos={[null,null,'absolute']} top='73%'>
             {matchedUser ? (<><Button border='2px solid black' px={['12']} borderRadius='lg' isLoading={matching}>Send Message <SendIcon size='16' ml={['1']} pos='relative' top={['2px']} /></Button>
               <Button bg={secondaryBg} color='white' px={['12']} borderRadius='lg' onClick={handleNewMatchRequest} _hover={[null, null, { bg: 'blue.300' }]} isLoading={matching}>Request Rematch</Button></>) : (
               <Button bg={secondaryBg} color='white' px={['12']} borderRadius='lg' onClick={onOpen} _hover={[null, null, { bg: 'blue.300' }]} >Request Match</Button>
@@ -142,19 +151,29 @@ function Matchmaking() {
             <ModalHeader>Find Your Buddy</ModalHeader>
             <ModalCloseButton />
             <ModalBody pos='relative'>
-              <Input placeholder='Search Your Skill' value={skillInput} onChange={(e)=>{setSkillInput(e.target.value)}}/>
-              <Flex direction='column' pos='absolute' h={['50%']} w={['50%']} bg='white' zIndex='3' left={['7%']} borderBottomRadius={['md']} border='1px' borderColor='gray.200' shadow='md' hidden={skillInput.length < 1}>
-
+              <Input placeholder='Search Your Skill' value={skillInput} onChange={(e)=>{setSkillInput(e.target.value)}} />
+              <Flex direction='column' pos='absolute'  w={['30%']}  zIndex='3' left={['6%']} borderBottomRadius={['md']} border='1px' borderColor='gray.200' _dark={{borderColor:'gray.600'}} shadow='md' hidden={skillInput.length < 1} p="2" bg={modalBg}>
+              {availableSkills.filter(s=>s.startsWith(skillInput.toLocaleLowerCase())).map((skill)=>{
+                return (<Fragment  key={skill}>
+                  <Tag variant='solid' size='sm' bg='#c795fc'  my='1'  px='2' cursor='pointer' className='capitalize' shadow='md'  onClick={()=>{handleAddSkill(skill)}}>
+                  <TagLabel>
+                    <Text textAlign='center'>{skill}</Text>
+                    </TagLabel>
+                  </Tag>
+                  </Fragment>)
+              })
+            }
+            {availableSkills.filter(s=>s.startsWith(skillInput.toLocaleLowerCase())).length<1 && <Text fontSize='xs' opacity={0.5}>No results found.</Text>   }       
               </Flex>
-              <Flex py='4' hidden={matches.active.skills.length < 1}>
-             { matches.active.skills.map((skill) => {
-                        return (<Fragment  key={skill}> <Tag variant='solid' size='sm' colorScheme='purple' mx='1'>
+              <Flex py='4' hidden={activeMatch.skills.length < 1}>
+             { activeMatch.skills.map((skill) => {
+                        return (<Fragment  key={skill} px='1'> <Tag variant='solid' size='sm' colorScheme='purple' mx='1'>
                           <TagLabel>{skill}</TagLabel>
                           <TagCloseButton onClick={()=>{dispatch(deleteActiveSkill(skill))}}/>
                         </Tag></Fragment>)
                       })}
               </Flex>
-              <Textarea placeholder='add description' my={['3','4','5']} />
+              <Textarea placeholder='add description' my={['3','4','5']} onChange={(e)=>{dispatch(addActiveDesc(e.target.value))}} value={activeMatch.desc}/>
             </ModalBody>
 
             <ModalFooter>
@@ -165,7 +184,7 @@ function Matchmaking() {
             </ModalFooter>
           </ModalContent>
         </Modal>
-      </Flex>
+        </Flex>
     </>
   )
 }
